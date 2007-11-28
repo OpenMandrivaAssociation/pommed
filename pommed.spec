@@ -22,6 +22,7 @@ BuildRequires:	libsmbios-devel
 BuildRequires:	pciutils-devel
 BuildRequires:	libx11-devel
 BuildRequires:	libxext-devel
+BuildRequires:	desktop-file-utils
 BuildRequires:	xpm-devel
 
 %description
@@ -67,6 +68,7 @@ of each item controlled by pommed.
 %setup -q
 
 %build
+perl -pi -e 's,/usr/lib,%{_libdir}.g' pommed/Makefile
 %make
 
 %install
