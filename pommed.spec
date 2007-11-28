@@ -68,7 +68,7 @@ of each item controlled by pommed.
 %setup -q
 
 %build
-perl -pi -e 's,/usr/lib,%{_libdir}.g' pommed/Makefile
+perl -pi -e 's,/usr/lib,%{_libdir},g' pommed/Makefile
 %make
 
 %install
