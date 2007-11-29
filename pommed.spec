@@ -37,7 +37,7 @@ Optional support for the Apple Remote control is available.
 
 %package -n gpomme
 Summary:	graphical client for pommed
-Group:		Hardware/Mobile
+Group:		System/Kernel and hardware
 Requires:	pommed
 Requires:	dbus
 
@@ -52,7 +52,7 @@ current state associated to this action.
 
 %package -n wmpomme
 Summary:	WindowMaker dockapp client for pommed
-Group:		Hardware/Mobile
+Group:		System/Kernel and hardware
 Requires:	pommed
 Requires:	dbus
 
