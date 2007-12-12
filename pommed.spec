@@ -3,7 +3,7 @@
 
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
-Version:	1.12
+Version:	1.14
 Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -12,7 +12,7 @@ Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:	eject
-BuildRequires:	libalsa-devel 
+BuildRequires:	libalsa-devel
 BuildRequires:	libaudiofile-devel
 BuildRequires:	dbus-devel
 BuildRequires:	gtk+2-devel
