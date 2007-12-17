@@ -10,7 +10,6 @@ Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}.init
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:	eject
 BuildRequires:	libalsa-devel
 BuildRequires:	libaudiofile-devel
