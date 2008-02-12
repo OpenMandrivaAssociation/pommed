@@ -4,7 +4,7 @@
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
 Version:	1.14
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
@@ -120,11 +120,11 @@ desktop-file-install --vendor="" \
 
 %find_lang gpomme
 
-%post
+%post gpomme
 %{update_menus}
 %{update_icon_cache hicolor}
 
-%postun
+%postun gpomme
 %{clean_menus}
 %{clean_icon_cache hicolor}
 
