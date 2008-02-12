@@ -120,11 +120,11 @@ desktop-file-install --vendor="" \
 
 %find_lang gpomme
 
-%post gpomme
+%post -n gpomme
 %{update_menus}
 %{update_icon_cache hicolor}
 
-%postun gpomme
+%postun -n gpomme
 %{clean_menus}
 %{clean_icon_cache hicolor}
 
