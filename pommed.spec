@@ -3,13 +3,14 @@
 
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
-Version:	1.14
-Release:	%mkrel 2
+Version:	1.18
+Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}.init
+Patch0:		pommed-1.18-cflags.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:	eject
 BuildRequires:	libalsa-devel
@@ -66,10 +67,11 @@ of each item controlled by pommed.
 
 %prep
 %setup -q
+%patch0 -p1 -b .cflags
 
 %build
 perl -pi -e 's,/usr/lib,%{_libdir},g' pommed/Makefile
-%make
+CFLAGS="%{optflags}" %make
 
 %install
 rm -rf %{buildroot}
