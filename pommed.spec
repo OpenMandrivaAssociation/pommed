@@ -122,13 +122,17 @@ desktop-file-install --vendor="" \
 
 %find_lang gpomme
 
+%if %mdkversion < 200900
 %post -n gpomme
 %{update_menus}
 %{update_icon_cache hicolor}
+%endif
 
+%if %mdkversion < 200900
 %postun -n gpomme
 %{clean_menus}
 %{clean_icon_cache hicolor}
+%endif
 
 %clean
 rm -rf %{buildroot}
