@@ -24,6 +24,7 @@ BuildRequires:	libx11-devel
 BuildRequires:	libxext-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	xpm-devel
+BuildRequires:  dbus-glib-devel
 
 %description
 pommed handles the hotkeys found on the Apple MacBook Pro, MacBook and
