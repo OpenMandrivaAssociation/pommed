@@ -3,7 +3,7 @@
 
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
-Version:	1.24
+Version:	1.25
 Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Kernel and hardware
