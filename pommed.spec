@@ -3,7 +3,7 @@
 
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
-Version:	1.25
+Version:	1.26
 Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -67,6 +67,7 @@ of each item controlled by pommed.
 
 %prep
 %setup -q
+sed -i -e "s/CFLAGS = -g -O2 /CFLAGS += /" -e "s/LDFLAGS =/LDFLAGS +=/" */Makefile
 
 %build
 perl -pi -e 's,/usr/lib,%{_libdir},g' pommed/Makefile
