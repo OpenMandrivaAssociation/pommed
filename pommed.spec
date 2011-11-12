@@ -3,8 +3,8 @@
 
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
-Version:	1.32
-Release:	%mkrel 2
+Version:	1.39
+Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
@@ -100,7 +100,6 @@ install -m 644 gpomme/*.desktop %{buildroot}%{_datadir}/applications
 for i in {16x16,22x22,24x24,32x32,48x48,64x64,72x72,96x96,128x128}; \
 do install -m 644 icons/gpomme_$i.png %{buildroot}%{_iconsdir}/hicolor/$i/apps/gpomme.png; done
 install -m 644 icons/gpomme.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/gpomme.svg
-install -m 644 gpomme/gpomme.glade %{buildroot}%{_datadir}/gpomme
 cp -a gpomme/themes %{buildroot}%{_datadir}/gpomme
 rm -rfv %{buildroot}%{_datadir}/gpomme/themes/src
 for mo in gpomme/po/*.mo ; do
