@@ -4,26 +4,25 @@
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
 Version:	1.39
-Release:	%mkrel 1
+Release:	2
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}.init
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:	eject
-BuildRequires:	libalsa-devel
-BuildRequires:	libaudiofile-devel
 BuildRequires:	dbus-devel
-BuildRequires:	gtk+2-devel
 BuildRequires:	confuse-devel
-BuildRequires:	libglade2-devel
 BuildRequires:	libsmbios-devel
 BuildRequires:	pciutils-devel
-BuildRequires:	libx11-devel
-BuildRequires:	libxext-devel
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(audiofile)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xpm)
 BuildRequires:	desktop-file-utils
-BuildRequires:	xpm-devel
 BuildRequires:  dbus-glib-devel
 
 %description
@@ -121,23 +120,7 @@ desktop-file-install --vendor="" \
 
 %find_lang gpomme
 
-%if %mdkversion < 200900
-%post -n gpomme
-%{update_menus}
-%{update_icon_cache hicolor}
-%endif
-
-%if %mdkversion < 200900
-%postun -n gpomme
-%{clean_menus}
-%{clean_icon_cache hicolor}
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS README TODO
 %config(noreplace) /etc/pommed.conf
 %config(noreplace) /etc/dbus-1/system.d/pommed.conf
@@ -146,7 +129,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/po*
 
 %files -n gpomme -f gpomme.lang
-%defattr(-,root,root)
 %{_bindir}/gpomme
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/*
@@ -154,8 +136,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/gpo*
 
 %files -n wmpomme
-%defattr(-,root,root)
 %{_bindir}/wmpomme
 %{_iconsdir}/wmpomme.xpm
 %{_mandir}/man1/wmpo*
-
