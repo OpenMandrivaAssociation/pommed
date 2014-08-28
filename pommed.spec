@@ -4,12 +4,12 @@
 Summary:	Apple laptops hotkeys event handler
 Name:		pommed
 Version:	1.39
-Release:	2
+Release:	4
 License:	GPLv2
 Group:		System/Kernel and hardware
 URL:		http://technologeek.org/projects/pommed/
 Source0:	%{name}-%{version}.tar.gz
-Source1:	%{name}.init
+Source1:	%{name}.service
 Requires:	eject
 BuildRequires:	dbus-devel
 BuildRequires:	confuse-devel
@@ -24,6 +24,10 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	desktop-file-utils
 BuildRequires:  dbus-glib-devel
+BuildRequires: systemd
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
 
 %description
 pommed handles the hotkeys found on the Apple MacBook Pro, MacBook and
@@ -36,7 +40,7 @@ up the keyboard backlight on the MacBook Pro and PowerBook.
 Optional support for the Apple Remote control is available.
 
 %package -n gpomme
-Summary:	graphical client for pommed
+Summary:	Graphical client for pommed
 Group:		System/Kernel and hardware
 Requires:	pommed
 Requires:	dbus
@@ -73,11 +77,10 @@ perl -pi -e 's,/usr/lib,%{_libdir},g' pommed/Makefile
 CFLAGS="%{optflags}" %make
 
 %install
-rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sbindir}
 mkdir -p %{buildroot}%{_sysconfdir}/dbus-1/system.d
-mkdir -p %{buildroot}%{_initrddir}
+install -d %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,22x22,24x24,32x32,48x48,64x64,72x72,96x96,128x128,scalable}/apps
 mkdir -p %{buildroot}%{_datadir}/gpomme
@@ -90,7 +93,7 @@ install -m 644 pommed.conf.pmac %{buildroot}%{_sysconfdir}/pommed.conf
 install -m 644 pommed.conf.mactel %{buildroot}%{_sysconfdir}/pommed.conf
 %endif
 install -m 644 dbus-policy.conf %{buildroot}%{_sysconfdir}/dbus-1/system.d/pommed.conf
-install -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/pommed
+install -D -p -m 0755 %{SOURCE1} %{buildroot}%{_unitdir}/pommed.service
 install -m 644 pommed.1 %{buildroot}%{_mandir}/man1
 # gpomme
 install -m 755 gpomme/gpomme %{buildroot}%{_bindir}
@@ -124,7 +127,7 @@ desktop-file-install --vendor="" \
 %doc AUTHORS README TODO
 %config(noreplace) /etc/pommed.conf
 %config(noreplace) /etc/dbus-1/system.d/pommed.conf
-%{_initrddir}/pommed
+%{_unitdir}/pommed.service
 %{_sbindir}/pommed
 %{_mandir}/man1/po*
 

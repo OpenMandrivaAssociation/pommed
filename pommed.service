@@ -1,0 +1,10 @@
+[Unit]
+Description=This shell script takes care of starting and stopping pommed
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/pommed
+
+[Install]
+WantedBy=multi-user.target
