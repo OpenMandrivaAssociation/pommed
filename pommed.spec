@@ -7,7 +7,7 @@ Version:	1.39
 Release:	4
 License:	GPLv2
 Group:		System/Kernel and hardware
-URL:		http://technologeek.org/projects/pommed/
+URL:		https://technologeek.org/projects/pommed/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}.service
 Requires:	eject
